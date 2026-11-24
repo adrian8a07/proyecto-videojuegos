@@ -26,7 +26,7 @@ if (!$juegoSeleccionado) {
 <body>
     <header>
         <h1>Gaming Tec</h1>
-        <nav>
+        <nav aria-label="Navegación principal">
             <a href="index.php" class="nav-link">Inicio</a>
             <a href="juegos.php" class="nav-link">Catálogo</a>
             <a href="alta-juego.php" class="nav-link">Agregar Juego</a>
@@ -35,15 +35,15 @@ if (!$juegoSeleccionado) {
     </header>
 
     <main>
-        <div class="card-producto" style="max-width: 750px; margin: 0 auto;">
+        <div class="card-producto detalle-card">
             <img src="<?php echo htmlspecialchars($juegoSeleccionado['imagen']); ?>" alt="<?php echo htmlspecialchars($juegoSeleccionado['titulo']); ?>" class="card-img-large">
             <span class="badge"><?php echo htmlspecialchars($juegoSeleccionado['categoria']); ?></span>
-            <h2 style="font-size: 2rem; margin: 0.5rem 0;"><?php echo htmlspecialchars($juegoSeleccionado['titulo']); ?></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem;"><?php echo htmlspecialchars($juegoSeleccionado['descripcion']); ?></p>
-            <p class="card-price" style="font-size: 2rem;">$<?php echo number_format($juegoSeleccionado['precio'], 2); ?></p>
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                <a href="#" class="btn-primary" style="flex: 1;">Comprar Ahora</a>
-                <a href="juegos.php" class="btn-secondary" style="flex: 1;">Volver al Catálogo</a>
+            <h2 class="detalle-titulo"><?php echo htmlspecialchars($juegoSeleccionado['titulo']); ?></h2>
+            <p class="detalle-descripcion"><?php echo htmlspecialchars($juegoSeleccionado['descripcion']); ?></p>
+            <p class="card-price detalle-precio">$<?php echo number_format($juegoSeleccionado['precio'], 2); ?></p>
+            <div class="acciones-detalle">
+                <a href="#" class="btn-primary">Comprar Ahora</a>
+                <a href="juegos.php" class="btn-secondary">Volver al Catálogo</a>
             </div>
         </div>
     </main>

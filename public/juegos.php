@@ -13,9 +13,9 @@ $juegos = json_decode($json, true);
 <body>
     <header>
         <h1>Gaming Tec</h1>
-        <nav>
+        <nav aria-label="Navegación principal">
             <a href="index.php" class="nav-link">Inicio</a>
-            <a href="juegos.php" class="nav-link active">Catálogo</a>
+            <a href="juegos.php" class="nav-link active" aria-current="page">Catálogo</a>
             <a href="alta-juego.php" class="nav-link">Agregar Juego</a>
             <a href="contacto.php" class="nav-link">Contacto</a>
         </nav>
@@ -33,7 +33,7 @@ $juegos = json_decode($json, true);
                     </div>
                     <div>
                         <p class="card-price">$<?php echo number_format($juego['precio'], 2); ?></p>
-                        <a href="juego-detalle.php?id=<?php echo $juego['id']; ?>" class="btn-primary" style="display: block;">Ver detalle</a>
+                        <a href="juego-detalle.php?id=<?php echo $juego['id']; ?>" class="btn-primary btn-block">Ver detalle</a>
                     </div>
                 </article>
             <?php endforeach; ?>

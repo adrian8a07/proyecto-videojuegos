@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SISTEMA DE DISEÑO - GAMING TEC (U2S04)
+   SISTEMA DE DISEÑO - GAMING TEC (U2S04 / U2S06)
    ========================================================================== */
 
 /* 1. VARIABLES CSS (CUSTOM PROPERTIES) */
@@ -47,6 +47,11 @@ h1, h2, h3 {
     margin-bottom: 1rem;
 }
 
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
 /* 3. ENCABEZADO Y NAVEGACIÓN */
 header {
     background-color: var(--bg-header);
@@ -68,6 +73,7 @@ header h1 {
 
 nav {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
 }
 
@@ -78,8 +84,12 @@ nav {
     transition: color 0.2s ease;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active,
+.nav-link[aria-current="page"] {
     color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 6px;
 }
 
 /* 4. LAYOUT EN GRID Y TARJETAS DE PRODUCTO */
@@ -122,6 +132,37 @@ nav {
     margin-bottom: 1.25rem;
 }
 
+.detalle-card {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.detalle-titulo {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+.detalle-descripcion {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.detalle-precio {
+    font-size: 2rem;
+}
+
+.acciones-detalle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.acciones-detalle > * {
+    flex: 1 1 180px;
+}
+
 /* 5. INSIGNIAS Y TIPOGRAFÍA DE TARJETAS */
 .badge {
     align-self: flex-start;
@@ -161,6 +202,15 @@ nav {
     transition: background-color 0.2s ease;
 }
 
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-submit-mt {
+    margin-top: 1rem;
+}
+
 .btn-primary {
     background-color: var(--color-primary);
     color: #ffffff;
@@ -182,6 +232,11 @@ nav {
 }
 
 /* 7. FORMULARIOS */
+.titulo-centrado {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 form {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -220,6 +275,12 @@ form {
     border-color: var(--color-primary);
 }
 
+.form-help {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+}
+
 /* 8. PIE DE PÁGINA */
 footer {
     background-color: var(--bg-header);
@@ -229,4 +290,32 @@ footer {
     color: var(--text-muted);
     font-size: 0.875rem;
     margin-top: auto;
+}
+
+/* 9. AJUSTES PARA PANTALLAS PEQUEÑAS (375 PX) */
+@media (max-width: 480px) {
+    header {
+        padding: 1rem;
+    }
+
+    nav {
+        gap: 0.75rem 1rem;
+    }
+
+    main {
+        width: 94%;
+        margin: 1.25rem auto;
+    }
+
+    form {
+        padding: 1.25rem;
+    }
+
+    .card-img-large {
+        height: 220px;
+    }
+
+    .acciones-detalle {
+        flex-direction: column;
+    }
 }
