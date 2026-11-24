@@ -4,38 +4,32 @@ declare(strict_types=1);
 require_once __DIR__ . '/../src/modelos/Categoria.php';
 require_once __DIR__ . '/../src/modelos/Juego.php';
 
-echo "<pre>";
-
-// 1. Probar Categoria con desdeArreglo
+// 1. Crear categoría desde arreglo
 $rpg = Categoria::desdeArreglo([
     'id' => 1,
     'nombre' => 'RPG / Acción',
-    'descripcion' => 'Juegos de rol y aventura',
+    'descripcion' => 'Juegos de rol y aventura de mundo abierto',
     'slug' => 'rpg-accion',
     'activa' => true
 ]);
 
-echo "=== PRUEBA CATEGORÍA ===\n";
-echo "Nombre: " . $rpg->obtenerNombre() . "\n";
-echo "Estado: " . $rpg->obtenerEtiquetaEstado() . "\n";
-echo "URL Filtro: " . $rpg->obtenerUrlFiltro() . "\n\n";
+echo "Categoría: " . $rpg->obtenerNombre() . " (" . $rpg->obtenerEtiquetaEstado() . ")<br>";
+echo "Enlace: " . $rpg->obtenerUrlFiltro() . "<br>";
+echo "----------------------------------------<br>";
 
-// 2. Probar Juego con desdeArreglo
-$cyberpunk = Juego::desdeArreglo([
+// 2. Crear juego desde arreglo
+$juego = Juego::desdeArreglo([
     'id' => 1,
     'titulo' => 'Cyberpunk 2077',
     'categoria' => $rpg,
     'precio' => 59.99,
-    'descripcion' => 'RPG de acción y aventura de mundo abierto ambientado en Night City.',
-    'stock' => 10,
-    'imagen' => 'https://ejemplo.com/cyberpunk.jpg'
+    'descripcion' => 'RPG de acción y aventura ambientado en Night City.',
+    'stock' => 25,
+    'imagen' => 'https://placehold.co/200x150?text=Cyberpunk'
 ]);
 
-echo "=== PRUEBA JUEGO ===\n";
-echo "Título: " . $cyberpunk->obtenerTitulo() . "\n";
-echo "Categoría: " . $cyberpunk->obtenerCategoria()->obtenerNombre() . "\n";
-echo "Precio normal: " . $cyberpunk->obtenerPrecioFormateado() . "\n";
-echo "Precio con 25% desc: $" . number_format($cyberpunk->calcularPrecioConDescuento(25), 2) . " USD\n";
-echo "¿Disponible?: " . ($cyberpunk->hayDisponibilidad() ? 'Sí (' . $cyberpunk->obtenerStock() . ' en stock)' : 'Agotado') . "\n";
+echo $juego->obtenerTitulo()
+    . " (" . $juego->obtenerCategoria()->obtenerNombre() . ") y cuesta "
+    . $juego->obtenerPrecioFormateado() . "<br>";
 
-echo "</pre>";
+echo $juego->estaDisponible() ? "Existe juego en inventario" : "Agotado";

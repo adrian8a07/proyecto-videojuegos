@@ -30,23 +30,23 @@ class Categoria {
         $this->activa = $activa;
     }
 
-    public static function desdeArreglo(array $datos): self {
+    private static function exigirCampos(array $registro): void {
         foreach (self::CAMPOS_OBLIGATORIOS as $campo) {
-            if (!array_key_exists($campo, $datos)) {
-                throw new InvalidArgumentException("Falta el campo obligatorio en Categoria: {$campo}");
+            if (!array_key_exists($campo, $registro)) {
+                throw new InvalidArgumentException("La categoría no tiene el campo: " . $campo);
             }
         }
+    }
 
-        if (trim((string)$datos['nombre']) === '') {
-            throw new InvalidArgumentException("El nombre de la categoría no puede estar vacío.");
-        }
+    public static function desdeArreglo(array $registro): self {
+        self::exigirCampos($registro);
 
         return new self(
-            (int)$datos['id'],
-            (string)$datos['nombre'],
-            (string)$datos['descripcion'],
-            (string)$datos['slug'],
-            (bool)$datos['activa']
+            (int)$registro['id'],
+            (string)$registro['nombre'],
+            (string)$registro['descripcion'],
+            (string)$registro['slug'],
+            (bool)$registro['activa']
         );
     }
 
@@ -71,7 +71,7 @@ class Categoria {
         return $this->activa;
     }
 
-    // Dos métodos de comportamiento
+    // Métodos de comportamiento
     public function obtenerEtiquetaEstado(): string {
         return $this->activa ? 'Disponible' : 'Oculta';
     }

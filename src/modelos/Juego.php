@@ -40,45 +40,29 @@ class Juego {
         $this->imagen = $imagen;
     }
 
-    public static function desdeArreglo(array $datos): self {
+    private static function exigirCampos(array $registro): void {
         foreach (self::CAMPOS_OBLIGATORIOS as $campo) {
-            if (!array_key_exists($campo, $datos)) {
-                throw new InvalidArgumentException("Falta el campo obligatorio en Juego: {$campo}");
+            if (!array_key_exists($campo, $registro)) {
+                throw new InvalidArgumentException("El juego no tiene el campo: " . $campo);
             }
         }
+    }
 
-        if ((float)$datos['precio'] < 0) {
-            throw new InvalidArgumentException("El precio no puede ser negativo.");
-        }
+    public static function desdeArreglo(array $registro): self {
+        self::exigirCampos($registro);
 
-        if ((int)$datos['stock'] < 0) {
-            throw new InvalidArgumentException("El stock no puede ser negativo.");
-        }
-
-        // Si 'categoria' viene como texto (como en tu datos.json actual), la convierte en objeto Categoria
-        if ($datos['categoria'] instanceof Categoria) {
-            $categoriaObj = $datos['categoria'];
-        } elseif (is_array($datos['categoria'])) {
-            $categoriaObj = Categoria::desdeArreglo($datos['categoria']);
-        } else {
-            $nombreCat = (string)$datos['categoria'];
-            $categoriaObj = Categoria::desdeArreglo([
-                'id' => 0,
-                'nombre' => $nombreCat,
-                'descripcion' => 'Categoría ' . $nombreCat,
-                'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nombreCat), '-')),
-                'activa' => true
-            ]);
-        }
+        $categoriaObj = $registro['categoria'] instanceof Categoria
+            ? $registro['categoria']
+            : Categoria::desdeArreglo($registro['categoria']);
 
         return new self(
-            (int)$datos['id'],
-            (string)$datos['titulo'],
+            (int)$registro['id'],
+            (string)$registro['titulo'],
             $categoriaObj,
-            (float)$datos['precio'],
-            (string)$datos['descripcion'],
-            (int)$datos['stock'],
-            (string)$datos['imagen']
+            (float)$registro['precio'],
+            (string)$registro['descripcion'],
+            (int)$registro['stock'],
+            (string)$registro['imagen']
         );
     }
 
@@ -111,19 +95,12 @@ class Juego {
         return $this->imagen;
     }
 
-    // Dos métodos de comportamiento
-    public function hayDisponibilidad(): bool {
+    // Métodos de comportamiento
+    public function estaDisponible(): bool {
         return $this->stock > 0;
     }
 
     public function obtenerPrecioFormateado(): string {
-        return '$' . number_format($this->precio, 2) . ' USD';
-    }
-
-    public function calcularPrecioConDescuento(float $porcentaje): float {
-        if ($porcentaje <= 0 || $porcentaje >= 100) {
-            return $this->precio;
-        }
-        return $this->precio - ($this->precio * ($porcentaje / 100));
+        return '$' . number_format($this->precio, 2);
     }
 }
