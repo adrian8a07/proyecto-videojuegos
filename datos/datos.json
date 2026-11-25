@@ -2,25 +2,55 @@
     {
         "id": 1,
         "titulo": "Cyberpunk 2077",
-        "categoria": "RPG / Acción",
+        "categoria": "RPG",
         "precio": 59.99,
-        "descripcion": "Un RPG de acción y aventura ambientado en Night City, una megalópolis obsesionada con el poder, el glamour y la modificación corporal.",
-        "imagen": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+        "descripcion": "RPG de acción y aventura de mundo abierto en Night City.",
+        "stock": 15,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg"
     },
     {
         "id": 2,
-        "titulo": "Elden Ring",
-        "categoria": "Souls-like / RPG",
-        "precio": 69.99,
-        "descripcion": "Un fascinante mundo abierto lleno de peligros, jefes imponentes y secretos por descubrir en las Tierras Intermedias.",
-        "imagen": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80"
+        "titulo": "The Witcher 3",
+        "categoria": "RPG",
+        "precio": 39.99,
+        "descripcion": "Aventura de fantasía oscura en un mundo abierto enorme.",
+        "stock": 8,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg"
     },
     {
         "id": 3,
-        "titulo": "God of War Ragnarök",
-        "categoria": "Acción / Aventura",
+        "titulo": "Elden Ring",
+        "categoria": "RPG",
         "precio": 69.99,
-        "descripcion": "Acompáñale a Kratos y Atreus en un viaje mítico a través de los Nueve Reinos en busca de respuestas antes del Ragnarök.",
-        "imagen": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+        "descripcion": "Juego de rol y acción en las Tierras Intermedias.",
+        "stock": 0,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+    },
+    {
+        "id": 4,
+        "titulo": "Halo Infinite",
+        "categoria": "Shooter",
+        "precio": 49.99,
+        "descripcion": "Disparos en primera persona con el Jefe Maestro.",
+        "stock": 20,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/1240440/header.jpg"
+    },
+    {
+        "id": 5,
+        "titulo": "DOOM Eternal",
+        "categoria": "Shooter",
+        "precio": 29.99,
+        "descripcion": "Acción frenética contra demonios en primera persona.",
+        "stock": 12,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/782330/header.jpg"
+    },
+    {
+        "id": 6,
+        "titulo": "Counter-Strike 2",
+        "categoria": "Shooter",
+        "precio": 14.99,
+        "descripcion": "Shooter táctico competitivo por equipos.",
+        "stock": 50,
+        "imagen": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"
     }
 ]
